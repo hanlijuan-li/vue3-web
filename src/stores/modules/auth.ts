@@ -1,6 +1,6 @@
 // import { AuthMenuItem } from "@/api/interface";
 import { getAuthMenuList } from "@/api/modules/login";
-import { getFlatMenuList, getShowMenuList } from "@/utils";
+import { getFlatMenuList, getShowMenuList, getAllBreadcrumbList } from "@/utils";
 import { defineStore } from "pinia";
 
 export const useAuthStore = defineStore({
@@ -16,7 +16,9 @@ export const useAuthStore = defineStore({
         // 菜单权限列表 ==> 扁平化之后的一维数组菜单
         flatMenuListGet: state => getFlatMenuList(state.authMenuList),
         // 菜单权限列表 ==> 左侧菜单栏渲染，需要剔除 isHide === true
-        showMenuListGet: state => getShowMenuList(state.authMenuList)
+        showMenuListGet: state => getShowMenuList(state.authMenuList),
+        // 递归处理后的所有面包屑导航列表
+        breadcrumbListGet: state => getAllBreadcrumbList(state.authMenuList)
     },
     actions: {
         async getAuthMenuList() {

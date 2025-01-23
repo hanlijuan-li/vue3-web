@@ -22,7 +22,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { ref } from "vue";
-import { a, increase } from "@/api/test";
 
 const input = ref("");
 let isComposition = ref(false);
@@ -39,12 +38,10 @@ onMounted(() => {
 
   inputEl.addEventListener("compositionstart", (event) => {
     isComposition.value = true;
-    console.log("composition started", event.target);
   });
 
   inputEl.addEventListener("compositionend", (event) => {
     isComposition.value = false;
-    console.log("composition ended", event.target);
     search(event.data);
   });
 });

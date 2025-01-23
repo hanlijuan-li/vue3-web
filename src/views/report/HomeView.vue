@@ -6,8 +6,11 @@ import {
   downloadFile,
 } from "@/api/modules/login";
 import { log } from "console";
-import { onMounted } from "vue";
+import { onMounted, provide, ref } from "vue";
 import { ElMessage } from "element-plus";
+
+const count = ref(0);
+provide("count", count);
 
 const simulate401 = () => {
   testMockio().then((res) => {

@@ -18,6 +18,14 @@ export function getShowMenuList(menuList) {
     })
 }
 
+export function getAllBreadcrumbList(menuList: Menu.MenuOptions[], parent: [] = [], result: { [key: string]: any } = {}) {
+    for (const item of menuList) {
+        result[item.path] = [...parent, item]
+        if (item.children) getAllBreadcrumbList(item.children, result[item.path], result)
+    }
+    return result
+}
+
 export function handleFileDownload(response: any, contentType: string) {
     // 获取文件名
     console.log(response.headers);

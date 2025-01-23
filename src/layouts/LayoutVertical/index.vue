@@ -2,54 +2,52 @@
 <template>
   <el-container class="layout">
     <el-aside>
-      <div class="aside-box">
+      <div
+        class="aside-box"
+        :style="{ width: globalStore.isCollapse ? '65px' : '210px' }"
+      >
         <div class="logo flx-center">
           <img class="logo-img" src="@/assets/logo.svg" alt="logo" />
-          <span class="logo-text">{{ title }}</span>
+          <span v-show="!globalStore.isCollapse" class="logo-text">{{
+            title
+          }}</span>
         </div>
         <el-scrollbar>
-          <el-menu :router="false" :default-active="activeMenu">
-            <template v-for="subItem in menuList" :key="subItem.path">
-              <el-sub-menu :index="subItem.path">
-                <template #title>
-                  <!-- 父级菜单的名称放在这里 -->
-                  <span>{{ subItem.name }}</span>
-                </template>
-                <!-- 如果有子菜单，下面可以继续添加子菜单项 -->
-                <el-menu-item
-                  v-for="childItem in subItem.children"
-                  :key="childItem.path"
-                  :index="childItem.path"
-                  @click="handleClickMenu(childItem)"
-                >
-                  {{ childItem.name }}
-                </el-menu-item>
-              </el-sub-menu>
-            </template>
+          <el-menu
+            :router="false"
+            :default-active="activeMenu"
+            :collapse="globalStore.isCollapse"
+            unique-opened
+            :collapse-transition="false"
+          >
+            <SubMenu :menu-list="menuList"></SubMenu>
           </el-menu>
-          <!-- <el-menu :router="false" :default-active="activeMenu">
-            <template v-for="subItem in menuList" :key="subItem.path">
-              <el-sub-menu :index="subItem.path">
-                <span>{{ subItem.name }}</span>
-              </el-sub-menu>
-            </template>
-          </el-menu> -->
         </el-scrollbar>
       </div>
     </el-aside>
+    <el-container>
+      <el-header>
+        <ToolBarLeft></ToolBarLeft>
+      </el-header>
+    </el-container>
     <el-main>
       <router-view></router-view>
     </el-main>
   </el-container>
 </template>
 <script setup lang='ts'>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/modules/auth";
+import { useGlobalStore } from "@/stores/modules/global";
+import SubMenu from "../components/Menu/SubMenu.vue";
+import ToolBarLeft from "../components/Header/ToolBarLeft.vue";
 
 const route = useRoute();
 const router = useRouter();
 const authStore = useAuthStore();
+const globalStore = useGlobalStore();
+// const isCollapse = ref(false);
 
 const title = import.meta.env.VITE_GLOBAL_APP_TITLE;
 
@@ -58,6 +56,7 @@ const activeMenu = computed(
 );
 
 const menuList = authStore.showMenuListGet;
+console.log("menuList", menuList);
 
 const handleClickMenu = (subItem) => {
   router.push(subItem.path);

@@ -6,6 +6,7 @@
             "name": "首页",
             "component": "/home/index",
             "meta": {
+                "icon": "HomeFilled",
                 "title": "首页",
                 "isLink": false,
                 "isHide": false,
@@ -19,6 +20,7 @@
             "name": "Report",
             "redirect": "/report/HomeView",
             "meta": {
+                "icon": "Platform",
                 "title": "报表",
                 "isLink": false
             },
@@ -28,8 +30,8 @@
                     "name": "HomeView",
                     "component": "/report/HomeView",
                     "meta": {
-                        "icon": "HomeFilled",
-                        "title": "首页",
+                        "icon": "Menu",
+                        "title": "HomeView",
                         "isLink": false,
                         "isHide": false,
                         "isFull": false,
@@ -42,8 +44,8 @@
                     "name": "AboutView",
                     "component": "/report/AboutView",
                     "meta": {
-                        "icon": "HomeFilled",
-                        "title": "首页",
+                        "icon": "Menu",
+                        "title": "AboutView",
                         "isLink": false,
                         "isHide": false,
                         "isFull": false,
