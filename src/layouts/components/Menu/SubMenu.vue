@@ -5,7 +5,7 @@
         <el-icon v-if="subItem.meta.icon">
           <component :is="subItem.meta.icon"></component>
         </el-icon>
-        <span>{{ subItem.meta.title }}</span>
+        <span>{{ subItem.meta[`name_${lang}`] }}</span>
       </template>
       <SubMenu :menu-list="subItem.children"></SubMenu>
     </el-sub-menu>
@@ -18,13 +18,15 @@
         <component :is="subItem.meta.icon"></component>
       </el-icon>
       <template #title>
-        <span>{{ subItem.meta.title }}</span>
+        <span>{{ subItem.meta[`name_${lang}`] }}</span>
       </template>
     </el-menu-item>
   </template>
 </template>
 <script setup lang="ts">
 import router from "@/router/index";
+import {useGlobalStore} from "@/stores/modules/global";
+import {computed} from "vue";
 
 defineProps<{ menuList: Menu.MenuOptions[] }>();
 
@@ -34,6 +36,10 @@ const handleClickMenu = (subItem: Menu.MenuOptions) => {
 
   router.push(subItem.path);
 };
+
+const globalStore = useGlobalStore()
+const lang = computed(() => globalStore.language)
+
 </script>
 <style lang="scss">
 .el-menu--collapse {

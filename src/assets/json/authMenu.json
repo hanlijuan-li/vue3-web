@@ -7,7 +7,8 @@
             "component": "/home/index",
             "meta": {
                 "icon": "HomeFilled",
-                "title": "首页",
+                "name_zh": "首页",
+                "name_en": "Home",
                 "isLink": false,
                 "isHide": false,
                 "isFull": false,
@@ -21,7 +22,8 @@
             "redirect": "/report/HomeView",
             "meta": {
                 "icon": "Platform",
-                "title": "报表",
+                "name_zh": "报表",
+                "name_en": "Reports",
                 "isLink": false
             },
             "children": [
@@ -31,7 +33,8 @@
                     "component": "/report/HomeView",
                     "meta": {
                         "icon": "Menu",
-                        "title": "HomeView",
+                        "name_zh": "HomeView",
+                        "name_en": "HomeView",
                         "isLink": false,
                         "isHide": false,
                         "isFull": false,
@@ -45,7 +48,8 @@
                     "component": "/report/AboutView",
                     "meta": {
                         "icon": "Menu",
-                        "title": "AboutView",
+                        "name_zh": "AboutView",
+                        "name_en": "AboutView",
                         "isLink": false,
                         "isHide": false,
                         "isFull": false,
@@ -59,7 +63,8 @@
                     "component": "/report/SubPageView",
                     "meta": {
                         "icon": "",
-                        "title": "SubPageView",
+                        "name_zh": "SubPageView",
+                        "name_en": "SubPageView",
                         "isLink": false,
                         "isHide": true,
                         "isFull": false,

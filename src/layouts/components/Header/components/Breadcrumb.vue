@@ -21,7 +21,7 @@
             >
               <component :is="item.meta.icon"></component>
             </el-icon>
-            <span class="breadcrumb-title">{{ item.meta.title }}</span>
+            <span class="breadcrumb-title">{{ item.meta[`name_${lang}`] }}</span>
           </div>
         </el-breadcrumb-item>
       </transition-group>
@@ -46,7 +46,7 @@ const breadcrumbList = computed(() => {
   return breadcrumbData;
 });
 
-console.log("breadcrumbList", breadcrumbList);
+const lang = computed(() => globalStore.language)
 </script>
 <style scoped lang="scss">
 .breadcrumb-box {
