@@ -1,70 +1,34 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <RouterView />
+<!--  <el-config-provider :locale="locale">-->
+    <RouterView />
+<!--  </el-config-provider>-->
 </template>
 
+<script setup lang="ts">
+import {useI18n} from "vue-i18n";
+import {computed, onMounted} from "vue";
+import {useGlobalStore} from "@/stores/modules/global";
+import {getBrowerLang} from "@/utils";
+import {LanguageType} from "@/stores/interface";
+import en from "element-plus/es/locale/lang/en";
+import zhCn from "element-plus/es/locale/lang/zh-cn";
+
+const globalStore = useGlobalStore()
+
+const i18n = useI18n()
+onMounted(() => {
+  const language = globalStore.language ?? getBrowerLang()
+  i18n.locale.value = language
+  globalStore.setGlobalState('language', language as LanguageType)
+})
+
+// element language
+const locale = computed(() => {
+  if (globalStore.language === 'zh') return zhCn
+  if (globalStore.language === 'en') return en
+  return getBrowerLang() === 'zh' ? zhCn : en
+})
+</script>
+
 <style scoped>
-/* header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-} */
 </style>

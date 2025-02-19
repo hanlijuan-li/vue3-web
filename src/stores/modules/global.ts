@@ -6,7 +6,9 @@ export const useGlobalStore = defineStore({
         // 折叠菜单
         isCollapse: false,
         // 面包屑导航栏图标
-        breadcrumbIcon: true
+        breadcrumbIcon: true,
+        // 当前语言系统
+        language: 'zh'
     }),
     actions: {
         setGlobalState(...args) {

@@ -53,3 +53,18 @@ export function handleFileDownload(response: any, contentType: string) {
     // 释放 URL 对象
     URL.revokeObjectURL(url);
 }
+
+/**
+ * 获取浏览器默认语言
+ */
+export function getBrowerLang () {
+    let browserLang = navigator.language ? navigator.language : navigator.browserLanguage
+    let defaultBrowserLang = ''
+    if (['cn', 'zh', 'zh-cn'].includes(browserLang.toLowerCase())) {
+        defaultBrowserLang = 'zh'
+    } else {
+        defaultBrowserLang = 'en'
+    }
+    console.log('broswerlanguage', defaultBrowserLang)
+    return defaultBrowserLang
+}

@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/stores/modules/auth"
 import router from '@/router/index'
-import { defineAsyncComponent } from 'vue';
+// import { defineAsyncComponent } from 'vue';
 // import { RouteRecordRaw } from 'vue-router'
 
 // 引入views 文件夹下的Vue文件
@@ -21,8 +21,9 @@ export const initDynamicRouter = async () => {
     // 2. 添加动态路由    
     authStore.flatMenuListGet.forEach(item => {     
       
-        if (item.component && typeof item.component === 'string') { 
-            const component = defineAsyncComponent(() => import('../../views' + item.component + '.vue'))
+        if (item.component && typeof item.component === 'string') {
+            const component = () => import('../../views' + item.component + '.vue')
+            // const component = defineAsyncComponent(() => import('../../views' + item.component + '.vue'))
             // const component = defineAsyncComponent(() => { 
             //     const pathWithAlias = `@/views${item.component}.vue`
             //     const resolvePath = pathWithAlias.replace(/^@/, '/src')
